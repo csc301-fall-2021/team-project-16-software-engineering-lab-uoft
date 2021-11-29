@@ -10,7 +10,7 @@ import baseStyles from '../../components/Styling.module.css';
 import axios from "axios";
 import DisplayBox from "../../components/Forms/DisplayBox/DisplayBox";
 
-export default function CodePage() {
+export default function PreviousCode() {
   const [editor, setEditor] = useState(null);
   const [jobId, setJobId] = useState(null);
   const [previousWork, setPreviousWork] = useState(false);
@@ -31,12 +31,6 @@ export default function CodePage() {
     //     'Content-Type': 'application/json'
     //   }
     // }).then((response) => {
-      localStorage.removeItem('synduce-jobId');
-      localStorage.setItem('synduce-code', editor.contentDOM.innerText);
-      setLoadState(1);
-      setTimeout(() => {
-        setLoadState(2);
-      }, 10000)
     // }, (error) => {
     //   console.log(error);
     // });
@@ -50,14 +44,12 @@ export default function CodePage() {
 
     let view = new EditorView({ state, parent: editorRef.current });
     setEditor(view);
-    setJobId(localStorage.getItem("synduce-jobId"));
 
     // Load previous code
-    let code = localStorage.getItem('synduce-code');
-    if (code) {
-      view.contentDOM.innerText = code;
-      setPreviousWork(true);
-    }
+      view.contentDOM.innerText = "Never gonna give you up\nNever gonna let you down\nNever gonna run around and desert you\n\nClearly this is not valid ocaml code, this will fail";
+      setPreviousWork(false);
+
+    setLoadState(2);
 
     // // @todo might wanna destroy on page leave
     return () => {
@@ -97,14 +89,9 @@ export default function CodePage() {
       {loadState === 2 && <div className={styles.responseWrapper}>
         <h2>Job response</h2>
         <div className={styles.successBox}>
-          <p style={{ margin: 0, fontSize: 17 }}><b>Job complete successfully</b></p>
+          <p style={{ margin: 0, fontSize: 17 }}><b>Job run failed</b></p>
           <p style={{ margin: 0 }}>Algorithm: SE2GIS</p>
-          <p style={{ margin: 0, marginBottom: 5 }}>Time elapsed: 0.409 seconds</p>
-        </div>
-
-        <h2>Your result</h2>
-        <div className={styles.codebox}>
-          let f0 a = (max a 0, a)<br /><br />let join (b0, b1) (c0, c1) = (max b0 (b1 + c0), b1 + c1)<br /><br />let s0  = (0, 0)<br /><br />let rec hom =<br />  function CNil -> s0 | Single(a) -> f0 a<br />  | Concat(x, y) -> join (hom x) (hom y)<br />
+          <p style={{ margin: 0, marginBottom: 5 }}>Time elapsed: 0.004 seconds</p>
         </div>
         <br />
         <br />
