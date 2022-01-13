@@ -33,7 +33,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     axios({
       method : "POST",
-      url: "https://rhnq76qo4e.execute-api.us-east-1.amazonaws.com/active/queryuserpastjobs",
+      url: "https://dt6ntns666.execute-api.us-east-1.amazonaws.com/active/queryuserpastjobs",
       data: {
         userID: auth?.user?.uid
       },

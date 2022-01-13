@@ -57,7 +57,7 @@ export default function CodePage(props) {
     console.log(options)
     axios({
       method : "POST",
-      url: "https://rhnq76qo4e.execute-api.us-east-1.amazonaws.com/active/dispatchjob",
+      url: "https://dt6ntns666.execute-api.us-east-1.amazonaws.com/active/dispatchjob",
       data: {
         userID: auth?.user?.uid || "guest",
         code: editor.contentDOM.innerText,
@@ -94,7 +94,7 @@ export default function CodePage(props) {
     if (jobId !== null) {
       axios({
         method : "POST",
-        url: "https://rhnq76qo4e.execute-api.us-east-1.amazonaws.com/active/queryjob",
+        url: "https://dt6ntns666.execute-api.us-east-1.amazonaws.com/active/queryjob",
         data: {
           userID: auth?.user?.uid || "guest",
           jobID: jobId
